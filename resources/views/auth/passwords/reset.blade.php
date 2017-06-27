@@ -1,11 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
+    <a href="{{ route('register') }}" class="cyan-text right btn btn-flat" style="margin: 15px">
+        <i class="fa fa-user-plus"></i> REGISTER
+    </a>
+    <a href="{{ route('login') }}" class="cyan-text right btn btn-flat" style="margin: 15px">
+        <i class="fa fa-sign-in"></i> LOGIN
+    </a>
+
+    <div class="container" style="margin-top: 100px;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+            <div class="card-large card-body white shadow-1">
+                <h1 class="center">Reset Password</h1>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -62,7 +69,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary cyan white-text">
                                     Reset Password
                                 </button>
                             </div>
