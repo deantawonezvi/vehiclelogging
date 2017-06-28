@@ -15,13 +15,15 @@ class CreateCranesTable extends Migration
     {
         Schema::create('cranes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('model');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
+     *REPORTS
      * @return void
      */
     public function down()

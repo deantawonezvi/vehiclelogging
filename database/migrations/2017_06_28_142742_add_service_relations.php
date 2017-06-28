@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDriversTable extends Migration
+class AddServiceRelations extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateDriversTable extends Migration
      */
     public function up()
     {
-        Schema::create('drivers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('contact_number');
-            $table->timestamps();
+        Schema::table('services', function (Blueprint $table) {
+            $table->unsignedInteger('crane_id');
+            $table->foreign('crane_id')->references('id')->on('cranes');
+
         });
     }
 
@@ -28,6 +27,8 @@ class CreateDriversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drivers');
+        Schema::table('services', function (Blueprint $table) {
+            //
+        });
     }
 }
