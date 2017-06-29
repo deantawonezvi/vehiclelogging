@@ -60,7 +60,7 @@
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="cyan-text">
+                                                     document.getElementById('logout-form').submit();" class="red-text">
                                         Logout
                                     </a>
 
@@ -84,5 +84,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('lib/animatelo/dist/animatelo.min.js') }}"></script>
 <script src="{{ asset('js/index.min.js') }}"></script>
+@yield('scripts')
+
 </body>
 </html>
