@@ -15,6 +15,8 @@
     <link href="{{ asset('lib/bs-enhance/bs-enhance.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('img/crane.ico') }}" type="image/x-icon"/>
+    <script src="{{ asset('lib/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
 </head>
 <body>
@@ -81,7 +83,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('lib/animatelo/dist/animatelo.min.js') }}"></script>
 <script src="{{ asset('js/index.min.js') }}"></script>
 @yield('scripts')

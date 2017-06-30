@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <a href="{{ route('register') }}" class="cyan-text right btn btn-flat" style="margin: 15px">
+    <a href="{{ route('register') }}" class="red-text right btn btn-flat" style="margin: 15px">
         <i class="fa fa-user-plus"></i> REGISTER
     </a>
     <div class="container" style="margin-top: 100px;">
@@ -58,11 +58,11 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn cyan darken-1 white-text waves-effect">
+                                <button type="submit" class="btn red darken-1 white-text waves-effect">
                                     Login
                                 </button>
 
-                                <a class="btn btn-link cyan-text" href="{{ route('password.request') }}">
+                                <a class="btn btn-link red-text" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>

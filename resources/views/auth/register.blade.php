@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <a href="{{ route('login') }}" class="cyan-text right btn btn-flat" style="margin: 15px">
+    <a href="{{ route('login') }}" class="red-text right btn btn-flat" style="margin: 15px">
         <i class="fa fa-sign-in"></i> LOGIN
     </a>
     <div class="container" style="margin-top: 100px;">
@@ -66,7 +66,7 @@
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary cyan white-text">
+                            <button type="submit" class="btn btn-primary red white-text">
                                 Register
                             </button>
                         </div>

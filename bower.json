@@ -21,6 +21,9 @@
     "font-awesome": "^4.7.0",
     "angularUtils-pagination": "angular-utils-pagination#0.11.1",
     "bs-enhance": "^1.0.0",
-    "animatelo": "^1.0.3"
+    "animatelo": "^1.0.3",
+    "select2": "^4.0.3",
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7"
   }
 }

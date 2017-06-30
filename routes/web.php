@@ -26,6 +26,5 @@ Route::get('/settings', 'ViewsController@viewSettings')->name('settings_home');
 Route::get('/clients', 'ViewsController@viewClients')->name('settings_home');
 
 
-Route::get('/api/driver/add', 'DriverController@addDriver');
 
 
