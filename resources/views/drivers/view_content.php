@@ -12,10 +12,11 @@
     </div>
     <hr class="divider-icon">
     <div class="row" ng-controller="mainCtrl">
-        <div class="col-sm-12" >
+        <div class="col-sm-12">
             <div class="card-large card-default card-body">
                 <h3 class="left">DRIVERS [{{drivers.length}}]</h3>
-                <h3 class="right"><a class="clickable" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle red-text"></i></a></h3>
+                <h3 class="right"><a class="clickable" data-toggle="modal" data-target="#myModal"><i
+                                class="fa fa-plus-circle red-text"></i></a></h3>
                 <br>
                 <table class="responsive-table bordered striped">
                     <thead>
@@ -32,21 +33,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="driver in drivers" ng-dblclick="open(driver)">
-                            <td>
-                                {{driver.name}}
-                            </td>
-                            <td>
-                                {{driver.contact_number}}
-                            </td>
-                            <td>
+                    <tr ng-repeat="driver in drivers" ng-dblclick="open(driver)">
+                        <td>
+                            {{driver.name}}
+                        </td>
+                        <td>
+                            {{driver.contact_number}}
+                        </td>
+                        <td>
 
-                            <td class="right">
-                                <button class="btn green white-text" ng-click="edit(driver)"><i class="fa fa-pencil"></i></button>
-                                <button class="btn red darken-4 white-text"><i class="fa fa-trash"></i></button>
-                            </td>
+                        <td class="right">
+                            <button class="btn green white-text" ng-click="edit(driver)"><i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn red darken-4 white-text" ng-click="delete(driver)"><i
+                                        class="fa fa-trash"></i></button>
+                        </td>
 
-                        </tr>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -55,25 +58,29 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">ADD DRIVER</h4>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="addDriverForm" ng-submit="add()">
                                     <div class="form-group">
                                         <label for="name">Driver Name:</label>
-                                        <input type="text" class="form-control" id="name">
+                                        <input type="text" class="form-control" id="name" ng-model="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="contact">Contact Number:</label>
-                                        <input type="text" class="form-control" id="contact">
+                                        <input type="text" class="form-control" id="contact" ng-model="contact"
+                                               required>
                                     </div>
-                                </form>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary red white-text">Save changes</button>
+                                <button type="submit" class="btn btn-primary red white-text">Save
+                                    changes <i ng-show="loader" class="fa fa-spin fa-spinner"></i></button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -83,24 +90,31 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" ng-click="closeEdit()" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">EDIT DRIVER</h4>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="editDriverForm" ng-submit="updateDriver()">
                                     <div class="form-group">
                                         <label for="name">Driver Name:</label>
-                                        <input type="text" class="form-control" id="name">
+                                        <input type="text" class="form-control" id="name" ng-model="driverE.name">
                                     </div>
                                     <div class="form-group">
                                         <label for="contact">Contact Number:</label>
-                                        <input type="text" class="form-control" id="contact">
+                                        <input type="text" class="form-control" id="contact"
+                                               ng-model="driverE.contact_number">
                                     </div>
-                                </form>
+
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary red white-text">Save changes</button>
+                                <button type="button" class="btn btn-default" ng-click="closeEdit()"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="btn btn-primary red white-text">Save changes <i
+                                            ng-show="loader" class="fa fa-spin fa-spinner"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>

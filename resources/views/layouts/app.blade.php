@@ -17,6 +17,7 @@
     <link rel="shortcut icon" href="{{ asset('img/crane.ico') }}" type="image/x-icon"/>
     <script src="{{ asset('lib/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    @yield('styles')
 
 </head>
 <body>

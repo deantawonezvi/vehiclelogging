@@ -13,7 +13,7 @@ class DriverController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required',
-            'contact_number' => 'required | unique:drivers,contact_number'
+            'contact_number' => 'required | numeric |unique:drivers,contact_number'
         ])->validate();
 
         $values = $request->all();
@@ -43,7 +43,7 @@ class DriverController extends Controller
 
         Validator::make($request->all(), [
             'id' => 'required  | exists:drivers,id',
-            'name' => 'required',
+            'contact_number' => 'numeric',
         ])->validate();
 
         Driver::findOrFail($request->id)
