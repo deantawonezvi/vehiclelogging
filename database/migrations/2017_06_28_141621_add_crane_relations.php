@@ -15,8 +15,8 @@ class AddCraneRelations extends Migration
     {
         Schema::table('cranes', function (Blueprint $table) {
             //
-            $table->unsignedInteger('defect_id');
-            $table->unsignedInteger('driver_id');
+            $table->unsignedInteger('defect_id')->nullable();
+            $table->unsignedInteger('driver_id')->nullable();
             $table->foreign('defect_id')->references('id')->on('defects');
             $table->foreign('driver_id')->references('id')->on('drivers');
         });

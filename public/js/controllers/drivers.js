@@ -88,7 +88,7 @@ angular.module('driversApp', [])
                         });
                 });
             console.log(driver)
-        }
+        };
         $scope.closeEdit = function () {
             $http.get('/api/driver/get')
                 .then(function (data) {

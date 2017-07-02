@@ -4,6 +4,21 @@ angular.module('cranesApp', [])
         $http.get('/api/crane/get')
             .then(function (data) {
                 $scope.cranes = data.data;
+
+                $http.get('/api/driver/get')
+                    .then(function(data){
+                        $scope.drivers = data.data;
+                        $scope.cranes.forEach(function (c) {
+                            $scope.drivers.forEach(function(d){
+                                if(c.driver_id === d.id){
+                                    c['driver'] = d
+                                }
+                            })
+                        });
+                        console.log($scope.cranes);
+                    }, function(error){
+                        console.log(error)
+                    })
             }, function (error) {
                 console.log(error)
             });
@@ -61,7 +76,7 @@ angular.module('cranesApp', [])
         };
         $scope.delete = function (crane) {
             swal({
-                    title: "DELETE DRIVER",
+                    title: "DELETE CRANE",
                     text: "Name - " + crane.name,
                     type: "warning",
                     showCancelButton: true,

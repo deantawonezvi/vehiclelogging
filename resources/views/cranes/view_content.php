@@ -15,7 +15,7 @@
     <div class="row" ng-controller="mainCtrl">
         <div class="col-sm-12" >
             <div class="card-large card-default card-body">
-                <h3 class="left">CRANES [100]</h3>
+                <h3 class="left">CRANES [{{cranes.length}}]</h3>
 
                 <h3 class="right"><a class="clickable" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle red-text"></i></a></h3>
                 <br>
@@ -42,11 +42,13 @@
                             {{crane.model}}
                         </td>
                         <td>
+                            {{crane.driver.name}}
+                        </td>
 
                         <td class="right">
-                            <button class="btn green white-text" ng-click="edit(driver)"><i class="fa fa-pencil"></i>
+                            <button class="btn green white-text" ng-click="edit(crane)"><i class="fa fa-pencil"></i>
                             </button>
-                            <button class="btn red darken-4 white-text" ng-click="delete(driver)"><i
+                            <button class="btn red darken-4 white-text" ng-click="delete(crane)"><i
                                     class="fa fa-trash"></i></button>
                         </td>
 

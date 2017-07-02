@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <center>
-            <img src="{{asset('img/crane.svg')}}" alt="crane" width="15%">
+            <img src="{{asset('img/crane.svg')}}" alt="crane" width="7%">
         </center>
         <div class="row">
             <div class="col-lg-4 col-sm-12 ">
