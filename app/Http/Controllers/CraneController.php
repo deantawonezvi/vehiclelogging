@@ -12,8 +12,7 @@ class CraneController extends Controller
         Validator::make($request->all(), [
             'name' => 'required',
             'model' => 'required',
-            'driver_id'=>'required | integer | exists:drivers,id',
-            'defect_id'=>'required | integer | exists:defects,id'
+            'driver_id'=>'integer | exists:drivers,id',
         ])->validate();
 
         $values = $request->all();
@@ -49,6 +48,7 @@ class CraneController extends Controller
 
     }
     public function getCrane(Request $request){
-        return Crane::get();
+        return Crane::with('driver','defect')
+                            ->get();
     }
 }

@@ -18,7 +18,7 @@ class CreateJobsTable extends Migration
 
             $table->increments('id');
             $table->unsignedInteger('crane_id');
-            $table->foreign('crane_id')->references('id')->on('cranes');
+            $table->foreign('crane_id')->references('id')->on('cranes')->onDelete('cascade');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamps();

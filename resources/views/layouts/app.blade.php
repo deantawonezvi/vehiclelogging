@@ -85,7 +85,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('lib/animatelo/dist/animatelo.min.js') }}"></script>
-<script src="{{ asset('js/index.min.js') }}"></script>
+<script src="{{ asset('js/index.js') }}"></script>
 @yield('scripts')
 
 </body>

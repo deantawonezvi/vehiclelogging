@@ -16,7 +16,7 @@ class AdditionalDriverData extends Migration
         Schema::table('drivers', function (Blueprint $table) {
             $table->string('drivers_licence_class');
             $table->boolean('crane_operating_licence');
-            $table->date('defensive_licence_expiry_date');
+            $table->timestamp('defensive_licence_expiry_date')->nullable();
         });
     }
 

@@ -16,7 +16,7 @@ class AddJobsRelations extends Migration
         Schema::table('jobs', function (Blueprint $table) {
             //
             $table->unsignedInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
         });
     }

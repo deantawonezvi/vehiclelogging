@@ -41,3 +41,11 @@ Route::post('/defect/update', 'DefectController@updateDefect');
 Route::post('/defect/delete', 'DefectController@deleteDefect');
 Route::get('/defect/get', 'DefectController@getDefect');
 
+/*
+ * CLIENTS API
+ * */
+Route::post('/client/add', 'ClientController@addClient');
+Route::post('/client/update', 'ClientController@updateClient');
+Route::post('/client/delete', 'ClientController@deleteClient');
+Route::get('/client/get', 'ClientController@getClient');
+

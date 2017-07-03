@@ -31,6 +31,9 @@
                         <th>
                             Driver
                         </th>
+                        <th>
+                            Defect
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,6 +46,9 @@
                         </td>
                         <td>
                             {{crane.driver.name}}
+                        </td>
+                        <td>
+                            {{crane.defect.name}}
                         </td>
 
                         <td class="right">
@@ -57,22 +63,88 @@
 
                 </table>
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">ADD CRANE</h4>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">ADD CRANE</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addCraneForm" ng-submit="add()">
+                            <div class="form-group">
+                                <label for="name">Crane Name:</label>
+                                <input type="text" class="form-control" id="name" ng-model="name" required>
                             </div>
-                            <div class="modal-body">
-                                ...
+                            <div class="form-group">
+                                <label for="contact">Crane Model:</label>
+                                <input type="text" class="form-control" id="model" ng-model="model"
+                                       required>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary red white-text">Save changes</button>
+                            <div class="form-group">
+                                <label for="contact">Crane Driver</label>
+                                <select name="" id="" class="search-select" ng-model="crane_driver" ng-options="driver.name for driver in drivers track by driver.id" required>
+
+                                </select>
                             </div>
-                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary red white-text">Save
+                            changes <i ng-show="loader" class="fa fa-spin fa-spinner"></i></button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Edit Crane Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" ng-click="closeEdit()" class="close" data-dismiss="modal"
+                                aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">EDIT CRANE</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editCraneForm" ng-submit="updateCrane()">
+                            <div class="form-group">
+                                <label for="name">Crane Name:</label>
+                                <input type="text" class="form-control" id="name" ng-model="craneE.name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Crane Model:</label>
+                                <input type="text" class="form-control" id="model" ng-model="craneE.model"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Crane Driver</label>
+                                <select name="driver" id="driver" class="search-select" ng-model="craneE.driver" ng-options="driver.name for driver in drivers track by driver.id" required>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Crane Defect</label>
+                                <select name="defect" id="defect" class="search-select" ng-model="craneE.defect" ng-options="defect.name for defect in defects track by defect.id" required>
+
+                                </select>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="closeEdit()"
+                                data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" class="btn btn-primary red white-text">Save changes <i
+                                    ng-show="loader" class="fa fa-spin fa-spinner"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,9 @@
-angular.module('driversApp', [])
+angular.module('jobsApp', [])
     .controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
         $scope.loader = false;
-        $http.get('/api/driver/get')
+        $http.get('/api/job/get')
             .then(function (data) {
-                $scope.drivers = data.data;
+                $scope.jobs = data.data;
             }, function (error) {
                 console.log(error)
             });
@@ -12,21 +12,21 @@ angular.module('driversApp', [])
             $scope.loader = true;
             var post = {
                 name:$scope.name,
-                contact_number:$scope.contact,
-                drivers_licence_class:$scope.licence_class,
-                crane_operating_licence:document.getElementById('crane_licence').checked,
-                defensive_licence_expiry_date:$scope.licence_expiry
+                contact:$scope.contact,
+                address:$scope.address,
+                email:$scope.email,
+                additional_contact:$scope.additional_contact
             };
             console.log(post);
-            $http.post('/api/driver/add',post)
+            $http.post('/api/job/add',post)
                 .then(function (data) {
                     swal(data.data);
                     $scope.loader = false;
                     $('#myModal').modal('toggle');
-                    $('#addDriverForm').trigger('reset');
-                    $http.get('/api/driver/get')
+                    $('#addJobForm').trigger('reset');
+                    $http.get('/api/job/get')
                         .then(function (data) {
-                            $scope.drivers = data.data;
+                            $scope.jobs = data.data;
                         }, function (error) {
                             console.log(error)
                         });
@@ -36,22 +36,25 @@ angular.module('driversApp', [])
                 })
 
         };
-        $scope.open = function (driver) {
-            console.log(driver)
+        $scope.open = function (job) {
+            console.log(job)
         };
-        $scope.edit = function (driver) {
+        $scope.edit = function (job) {
             $('#editModal').modal('show');
-            $scope.driverE = driver;
+            $scope.jobE = job;
 
-            $scope.updateDriver = function(){
+            $scope.updateJob = function(){
                 $scope.loader = true;
 
                 var post = {
-                    id:$scope.driverE.id,
-                    name:$scope.driverE.name,
-                    contact_number:$scope.driverE.contact_number
+                    id:$scope.jobE.id,
+                    name:$scope.jobE.name,
+                    contact:$scope.jobE.contact,
+                    address:$scope.jobE.address,
+                    email:$scope.jobE.email,
+                    additional_contact:$scope.jobE.additional_contact
                 };
-                $http.post('/api/driver/update',post)
+                $http.post('/api/job/update',post)
                     .then(function (data) {
                         swal(data.data);
                         $scope.loader = false;
@@ -63,10 +66,10 @@ angular.module('driversApp', [])
             }
 
         };
-        $scope.delete = function (driver) {
+        $scope.delete = function (job) {
             swal({
-                    title: "DELETE DRIVER",
-                    text: "Name - " + driver.name,
+                    title: "DELETE JOB",
+                    text: "Name - " + job.name,
                     type: "warning",
                     showCancelButton: true,
                     closeOnConfirm: false,
@@ -76,14 +79,14 @@ angular.module('driversApp', [])
                 },
                 function () {
                     var post = {
-                        id: driver.id
+                        id: job.id
                     };
-                    $http.post('/api/driver/delete', post)
+                    $http.post('/api/job/delete', post)
                         .then(function (data) {
                             swal('', data.data, 'success');
-                            $http.get('/api/driver/get')
+                            $http.get('/api/job/get')
                                 .then(function (data) {
-                                    $scope.drivers = data.data;
+                                    $scope.jobs = data.data;
                                 }, function (error) {
                                     console.log(error)
                                 });
@@ -91,12 +94,12 @@ angular.module('driversApp', [])
                             console.log(error)
                         });
                 });
-            console.log(driver)
+            console.log(job)
         };
         $scope.closeEdit = function () {
-            $http.get('/api/driver/get')
+            $http.get('/api/job/get')
                 .then(function (data) {
-                    $scope.drivers = data.data;
+                    $scope.jobs = data.data;
                 }, function (error) {
                     console.log(error)
                 });

@@ -17,8 +17,8 @@ class AddCraneRelations extends Migration
             //
             $table->unsignedInteger('defect_id')->nullable();
             $table->unsignedInteger('driver_id')->nullable();
-            $table->foreign('defect_id')->references('id')->on('defects');
-            $table->foreign('driver_id')->references('id')->on('drivers');
+            $table->foreign('defect_id')->references('id')->on('defects')->onDelete('set null');
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('set null');
         });
     }
 

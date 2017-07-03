@@ -4,46 +4,46 @@ angular.module('cranesApp', [])
         $http.get('/api/crane/get')
             .then(function (data) {
                 $scope.cranes = data.data;
-
-                $http.get('/api/driver/get')
-                    .then(function(data){
-                        $scope.drivers = data.data;
-                        $scope.cranes.forEach(function (c) {
-                            $scope.drivers.forEach(function(d){
-                                if(c.driver_id === d.id){
-                                    c['driver'] = d
-                                }
-                            })
-                        });
-                        console.log($scope.cranes);
-                    }, function(error){
-                        console.log(error)
-                    })
+            }, function (error) {
+                console.log(error)
+            });
+        $http.get('/api/defect/get')
+            .then(function (data) {
+                $scope.defects = data.data;
+            }, function (error) {
+                console.log(error)
+            });
+        $http.get('/api/driver/get')
+            .then(function (data) {
+                $scope.drivers = data.data;
             }, function (error) {
                 console.log(error)
             });
 
+
         $scope.add = function () {
             $scope.loader = true;
             var post = {
-                name:$scope.name,
-                contact_number:$scope.contact
+                name: $scope.name,
+                model: $scope.model,
+                driver_id: $scope.crane_driver.id
             };
-            $http.post('/api/crane/add',post)
+
+            $http.post('/api/crane/add', post)
                 .then(function (data) {
                     swal(data.data);
                     $scope.loader = false;
                     $('#myModal').modal('toggle');
-                    $('#addDriverForm').trigger('reset');
+                    $('#addCraneForm').trigger('reset');
                     $http.get('/api/crane/get')
                         .then(function (data) {
                             $scope.cranes = data.data;
                         }, function (error) {
                             console.log(error)
                         });
-                }, function(error){
+                }, function (error) {
                     $scope.loader = false;
-                    swal('',Object.values(error.data)[0],'error');
+                    swal('', Object.values(error.data)[0], 'error');
                 })
 
         };
@@ -54,21 +54,31 @@ angular.module('cranesApp', [])
             $('#editModal').modal('show');
             $scope.craneE = crane;
 
-            $scope.updateDriver = function(){
+            $scope.updateCrane = function () {
                 $scope.loader = true;
 
                 var post = {
-                    id:$scope.craneE.id,
-                    name:$scope.craneE.name,
-                    contact_number:$scope.craneE.contact_number
+                    id: $scope.craneE.id,
+                    name: $scope.craneE.name,
+                    model: $scope.craneE.model,
+                    driver_id: $scope.craneE.driver.id,
+                    defect_id: $scope.craneE.defect.id
                 };
-                $http.post('/api/crane/update',post)
+
+                $http.post('/api/crane/update', post)
                     .then(function (data) {
                         swal(data.data);
                         $scope.loader = false;
+                        $http.get('/api/crane/get')
+                            .then(function (data) {
+                                $scope.cranes = data.data;
+                            }, function (error) {
+                                console.log(error)
+                            });
+
 
                     }, function (error) {
-                        swal('',Object.values(error.data)[0],'error');
+                        swal('', Object.values(error.data)[0], 'error');
                         $scope.loader = false;
                     })
             }
@@ -95,6 +105,32 @@ angular.module('cranesApp', [])
                             $http.get('/api/crane/get')
                                 .then(function (data) {
                                     $scope.cranes = data.data;
+
+                                    $http.get('/api/driver/get')
+                                        .then(function (data) {
+                                            $scope.drivers = data.data;
+                                            $scope.cranes.forEach(function (c) {
+                                                $scope.drivers.forEach(function (d) {
+                                                    if (c.driver_id === d.id) {
+                                                        c['driver'] = d
+                                                    }
+                                                })
+                                                $http.get('/api/defect/get')
+                                                    .then(function (data) {
+                                                        $scope.defects = data.data
+                                                        $scope.defects.forEach(function (d) {
+                                                            if (c.defect_id === d.id) {
+                                                                c['defect'] = d
+                                                            }
+                                                        })
+                                                    }, function (error) {
+                                                        console.log(error)
+                                                    });
+                                            });
+                                            console.log($scope.cranes);
+                                        }, function (error) {
+                                            console.log(error)
+                                        })
                                 }, function (error) {
                                     console.log(error)
                                 });
@@ -105,6 +141,8 @@ angular.module('cranesApp', [])
             console.log(crane)
         };
         $scope.closeEdit = function () {
+            $('#editCraneForm').trigger('reset');
+            $scope.craneE = [];
             $http.get('/api/crane/get')
                 .then(function (data) {
                     $scope.cranes = data.data;
@@ -113,3 +151,6 @@ angular.module('cranesApp', [])
                 });
         }
     }]);
+
+
+

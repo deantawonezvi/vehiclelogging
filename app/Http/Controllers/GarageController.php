@@ -22,7 +22,7 @@ class GarageController extends Controller
 
         Garage::create($values);
 
-        return 'Garageg Added Successfully!';
+        return 'Garage Added Successfully!';
 
     }
 
@@ -51,7 +51,7 @@ class GarageController extends Controller
         Garage::findOrFail($request->id)
             ->update($request->except('id'));
 
-        return 'garage Updated Successfully';
+        return 'Garage Updated Successfully';
 
 
     }
