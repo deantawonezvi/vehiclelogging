@@ -13,9 +13,10 @@ class GarageController extends Controller
         Validator::make($request->all(), [
             'name' => 'required | unique:garages,name',
             'contact_person' => 'required',
+            'contact_number' => 'required | unique:garages,contact_number',
             'bank_name' => 'required',
             'bank_branch' => 'required',
-            'bank_account_number' => 'required | numeric | unique:garages,bank_account',
+            'bank_account_number' => 'required | numeric | unique:garages,bank_account_number',
         ])->validate();
 
         $values = $request->all();

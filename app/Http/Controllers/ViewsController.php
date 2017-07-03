@@ -36,6 +36,14 @@ class ViewsController extends Controller
     {
         return view('settings.view');
     }
+    public function viewGarages()
+    {
+        return view('garages.view');
+    }
+    public function viewRepairs()
+    {
+        return view('repairs.view');
+    }
 
 
 }

@@ -13,7 +13,5 @@ class Crane extends Model
     public function driver(){
         return $this->belongsTo(Driver::class);
     }
-    public function defect(){
-        return $this->belongsTo(Defect::class);
-    }
+
 }

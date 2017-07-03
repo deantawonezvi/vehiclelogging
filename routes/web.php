@@ -24,6 +24,8 @@ Route::get('/jobs', 'ViewsController@viewJobs')->name('jobs_home');
 Route::get('/reports', 'ViewsController@viewReports')->name('reports_home');
 Route::get('/settings', 'ViewsController@viewSettings')->name('settings_home');
 Route::get('/clients', 'ViewsController@viewClients')->name('settings_home');
+Route::get('/garages', 'ViewsController@viewGarages')->name('garages_home');
+Route::get('/repairs', 'ViewsController@viewRepairs')->name('repairs_home');
 
 
 

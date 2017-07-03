@@ -17,6 +17,7 @@ class CreateGaragesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('contact_person');
+            $table->string('contact_number');
             $table->string('bank_name');
             $table->string('bank_branch');
             $table->string('bank_account_number');

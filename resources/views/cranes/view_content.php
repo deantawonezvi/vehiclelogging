@@ -12,6 +12,11 @@
     </div>
 
     <hr class="divider-icon">
+    <div>
+        <a class="btn btn-flat" href="/garages"><i class="fa fa-bus"></i> GARAGES</a>
+        <a class="btn btn-flat" href="/repairs"><i class="fa fa-wrench"></i> REPAIRS</a>
+    </div>
+    <hr>
     <div class="row" ng-controller="mainCtrl">
         <div class="col-sm-12" >
             <div class="card-large card-default card-body">
@@ -48,7 +53,7 @@
                             {{crane.driver.name}}
                         </td>
                         <td>
-                            {{crane.defect.name}}
+                            {{crane.defect}}
                         </td>
 
                         <td class="right">
@@ -132,9 +137,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="contact">Crane Defect</label>
-                                <select name="defect" id="defect" class="search-select" ng-model="craneE.defect" ng-options="defect.name for defect in defects track by defect.id" required>
-
-                                </select>
+                                <input type="text" class="form-control" id="model" ng-model="craneE.defect"
+                                       required>
                             </div>
 
                     </div>

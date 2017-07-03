@@ -7,12 +7,7 @@ angular.module('cranesApp', [])
             }, function (error) {
                 console.log(error)
             });
-        $http.get('/api/defect/get')
-            .then(function (data) {
-                $scope.defects = data.data;
-            }, function (error) {
-                console.log(error)
-            });
+
         $http.get('/api/driver/get')
             .then(function (data) {
                 $scope.drivers = data.data;
@@ -62,7 +57,7 @@ angular.module('cranesApp', [])
                     name: $scope.craneE.name,
                     model: $scope.craneE.model,
                     driver_id: $scope.craneE.driver.id,
-                    defect_id: $scope.craneE.defect.id
+                    defect: $scope.craneE.defect
                 };
 
                 $http.post('/api/crane/update', post)

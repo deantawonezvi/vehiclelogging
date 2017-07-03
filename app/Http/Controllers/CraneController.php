@@ -48,7 +48,7 @@ class CraneController extends Controller
 
     }
     public function getCrane(Request $request){
-        return Crane::with('driver','defect')
+        return Crane::with('driver')
                             ->get();
     }
 }

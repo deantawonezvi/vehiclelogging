@@ -11,8 +11,8 @@ class RepairController extends Controller
     public function addRepair(Request $request)
     {
         Validator::make($request->all(), [
-            'crane_id' => 'required | numeric',
-            'crane_id' => 'required | numeric',
+            'crane_id' => 'required | numeric | exists:cranes:id',
+            'garage_id' => 'required | numeric | exists:garages_id',
             'contact_number' => 'required | numeric |unique:repairs,contact_number'
         ])->validate();
 

@@ -49,3 +49,11 @@ Route::post('/client/update', 'ClientController@updateClient');
 Route::post('/client/delete', 'ClientController@deleteClient');
 Route::get('/client/get', 'ClientController@getClient');
 
+/*
+ * GARAGES API
+ * */
+Route::post('/garage/add', 'GarageController@addGarage');
+Route::post('/garage/update', 'GarageController@updateGarage');
+Route::post('/garage/delete', 'GarageController@deleteGarage');
+Route::get('/garage/get', 'GarageController@getGarage');
+

@@ -19,14 +19,11 @@ class CreateRepairsTable extends Migration
             $table->unsignedInteger('crane_id');
             $table->foreign('crane_id')->references('id')->on('cranes')->onDelete('cascade');
 
-            $table->unsignedInteger('defect_id');
-            $table->foreign('defect_id')->references('id')->on('defects')->onDelete('cascade');
-
             $table->unsignedInteger('garage_id');
             $table->foreign('garage_id')->references('id')->on('garages')->onDelete('cascade');
 
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
 
             $table->timestamps();
         });
