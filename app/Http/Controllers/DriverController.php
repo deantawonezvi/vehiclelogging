@@ -16,7 +16,7 @@ class DriverController extends Controller
             'name' => 'required',
             'drivers_licence_class' => 'required | numeric | between:1,5',
             'crane_operating_licence' => 'required',
-            'defensive_licence_expiry_date' => 'required | date',
+            'defensive_licence_expiry_date' => 'required',
             'contact_number' => 'required | numeric |unique:drivers,contact_number'
         ])->validate();
 

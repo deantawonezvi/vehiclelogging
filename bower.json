@@ -24,6 +24,7 @@
     "animatelo": "^1.0.3",
     "select2": "^4.0.3",
     "jquery": "^3.2.1",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "pickadate": "^3.5.6"
   }
 }

@@ -57,3 +57,11 @@ Route::post('/garage/update', 'GarageController@updateGarage');
 Route::post('/garage/delete', 'GarageController@deleteGarage');
 Route::get('/garage/get', 'GarageController@getGarage');
 
+/*
+ * REPAIRS API
+ * */
+Route::post('/repair/add', 'RepairController@addRepair');
+Route::post('/repair/update', 'RepairController@updateRepair');
+Route::post('/repair/delete', 'RepairController@deleteRepair');
+Route::get('/repair/get', 'RepairController@getRepair');
+

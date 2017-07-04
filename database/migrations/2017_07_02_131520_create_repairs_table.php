@@ -22,6 +22,10 @@ class CreateRepairsTable extends Migration
             $table->unsignedInteger('garage_id');
             $table->foreign('garage_id')->references('id')->on('garages')->onDelete('cascade');
 
+            $table->string('description')->nullable();
+            $table->string('defect')->nullable();
+            $table->string('state')->default('PENDING');
+
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
 

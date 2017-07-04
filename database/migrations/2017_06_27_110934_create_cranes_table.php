@@ -17,7 +17,7 @@ class CreateCranesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('model');
-            $table->string('defect');
+            $table->string('defect')->default('No Defect');
             $table->timestamps();
         });
     }

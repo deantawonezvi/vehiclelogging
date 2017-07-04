@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="contact">Defensive Licence Expiry Date:</label>
-                                        <input type="date" class="form-control" id="licence_class"
+                                        <input type="text" class="form-control date-picker" id="licence_class"
                                                ng-model="licence_expiry"
                                                required>
                                     </div>
@@ -97,7 +97,7 @@
                                     <div class="form-group">
                                         <label for="contact">Has Crane Operating Licence:</label>
                                         <input type="checkbox" id="crane_licence" ng-model="crane_licence"
-                                               required>
+                                        >
                                     </div>
 
                             </div>
