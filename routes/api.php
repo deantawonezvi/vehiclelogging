@@ -65,3 +65,11 @@ Route::post('/repair/update', 'RepairController@updateRepair');
 Route::post('/repair/delete', 'RepairController@deleteRepair');
 Route::get('/repair/get', 'RepairController@getRepair');
 
+/*
+ * JOBS API
+ * */
+Route::post('/job/add', 'JobController@addJob');
+Route::post('/job/update', 'JobController@updateJob');
+Route::post('/job/delete', 'JobController@deleteJob');
+Route::get('/job/get', 'JobController@getJob');
+

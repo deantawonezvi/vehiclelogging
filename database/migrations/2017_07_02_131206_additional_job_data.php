@@ -16,6 +16,7 @@ class AdditionalJobData extends Migration
         Schema::table('jobs', function (Blueprint $table) {
             $table->string('description');
             $table->string('location');
+            $table->string('status')->default('PENDING');
 
         });
     }

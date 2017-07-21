@@ -12,19 +12,18 @@ class JobController extends Controller
     public function addJob(Request $request)
     {
         Validator::make($request->all(), [
-            'name' => 'required',
-            'jobs_licence_class' => 'required | numeric | between:1,5',
-            'crane_operating_licence' => 'required',
-            'defensive_licence_expiry_date' => 'required | date',
-            'contact_number' => 'required | numeric |unique:jobs,contact_number'
+            'client_id' => 'required | exists:clients,id',
+            'crane_id' => 'required | exists:cranes,id',
+            'location' => 'required'
         ])->validate();
 
         $values = array(
-            'name' => $request->name,
-            'jobs_licence_class' => $request->jobs_licence_class,
-            'crane_operating_licence' => $request->crane_operating_licence,
-            'defensive_licence_expiry_date' =>new Carbon($request->defensive_licence_expiry_date),
-            'contact_number' => $request->contact_number
+            'client_id' => $request->client_id,
+            'crane_id' => $request->crane_id,
+            'location' => $request->location,
+            'description' => $request->description,
+            'start_date' =>new Carbon($request->start_date),
+            'end_date' =>new Carbon($request->end_date),
         );
 
         Job::create($values);
@@ -52,13 +51,22 @@ class JobController extends Controller
 
         Validator::make($request->all(), [
             'id' => 'required  | exists:jobs,id',
-            'contact_number' => 'numeric',
-            'jobs_licence_class' => 'numeric | between:1,5',
-            'defensive_licence_expiry_date' => 'date',
+            'client_id' => 'required | exists:clients,id',
+            'crane_id' => 'required | exists:cranes,id',
         ])->validate();
 
+        $values = array(
+            'client_id' => $request->client_id,
+            'crane_id' => $request->crane_id,
+            'location' => $request->location,
+            'description' => $request->description,
+            'status' => $request->status,
+            'start_date' =>new Carbon($request->start_date),
+            'end_date' =>new Carbon($request->end_date),
+        );
+
         Job::findOrFail($request->id)
-            ->update($request->except('id'));
+            ->update($values);
 
         return 'Job Updated Successfully';
 
@@ -67,6 +75,7 @@ class JobController extends Controller
 
     public function getJob(Request $request)
     {
-        return Job::get();
+        return Job::with('crane.driver','client')
+                    ->get();
     }
 }

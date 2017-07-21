@@ -4,6 +4,19 @@ angular.module('jobsApp', [])
         $http.get('/api/job/get')
             .then(function (data) {
                 $scope.jobs = data.data;
+                console.log(data)
+            }, function (error) {
+                console.log(error)
+            });
+        $http.get('/api/client/get')
+            .then(function (data) {
+                $scope.clients = data.data;
+            }, function (error) {
+                console.log(error)
+            });
+        $http.get('/api/crane/get')
+            .then(function (data) {
+                $scope.cranes = data.data;
             }, function (error) {
                 console.log(error)
             });
@@ -11,11 +24,12 @@ angular.module('jobsApp', [])
         $scope.add = function () {
             $scope.loader = true;
             var post = {
-                name:$scope.name,
-                contact:$scope.contact,
-                address:$scope.address,
-                email:$scope.email,
-                additional_contact:$scope.additional_contact
+                client_id:$scope.client,
+                crane_id:$scope.crane,
+                location:$scope.location,
+                description:$scope.description,
+                start_date:$scope.start_date,
+                end_date:$scope.end_date
             };
             console.log(post);
             $http.post('/api/job/add',post)
@@ -48,11 +62,14 @@ angular.module('jobsApp', [])
 
                 var post = {
                     id:$scope.jobE.id,
-                    name:$scope.jobE.name,
-                    contact:$scope.jobE.contact,
-                    address:$scope.jobE.address,
-                    email:$scope.jobE.email,
-                    additional_contact:$scope.jobE.additional_contact
+                    client_id:$scope.jobE.client_id,
+                    crane_id:$scope.jobE.crane_id,
+                    location:$scope.jobE.location,
+                    status:$scope.jobE.status,
+                    description:$scope.jobE.description,
+                    start_date:$scope.jobE.start_date,
+                    end_date:$scope.jobE.end_date
+
                 };
                 $http.post('/api/job/update',post)
                     .then(function (data) {
@@ -104,4 +121,10 @@ angular.module('jobsApp', [])
                     console.log(error)
                 });
         }
-    }]);
+    }])
+
+    .filter('stringToDate', function ($filter) {
+        return function (ele, dateFormat) {
+            return $filter('date')(new Date(ele), dateFormat);
+        }
+    });
