@@ -37,6 +37,9 @@
                             Driver
                         </th>
                         <th>
+                            Mileage
+                        </th>
+                        <th>
                             Defect
                         </th>
                     </tr>
@@ -51,6 +54,9 @@
                         </td>
                         <td>
                             {{crane.driver.name}}
+                        </td>
+                        <td>
+                            {{crane.mileage}} km
                         </td>
                         <td>
                             {{crane.defect}}
@@ -69,6 +75,8 @@
                 </table>
 
             </div>
+            <br><br>
+
         </div>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -128,6 +136,11 @@
                                 <label for="contact">Crane Model:</label>
                                 <input type="text" class="form-control" id="model" ng-model="craneE.model"
                                        required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Crane Mileage(km):</label>
+                                <input type="text" class="form-control" id="model" ng-model="craneE.mileage"
+                                       required disabled>
                             </div>
                             <div class="form-group">
                                 <label for="contact">Crane Driver</label>

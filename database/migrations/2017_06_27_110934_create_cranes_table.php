@@ -18,6 +18,7 @@ class CreateCranesTable extends Migration
             $table->string('name');
             $table->string('model');
             $table->string('defect')->default('No Defect');
+            $table->float('mileage')->default(0);
             $table->timestamps();
         });
     }

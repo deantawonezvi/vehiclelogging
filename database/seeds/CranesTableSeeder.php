@@ -11,12 +11,15 @@ class CranesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Crane::create([
-            'id' => 1,
-            'name' => 'Crane 1',
-            'model' => 'Model 1 ',
-            'defect' => 'Broken Window',
-            'driver_id' => 1,
-        ]);
+        $faker = \Faker\Factory::create();
+
+        for($i =0; $i<10; $i++){
+            \App\Crane::create([
+                'name' => $faker->firstNameMale,
+                'model'=>$faker->company,
+                'defect'=>'Broken Window',
+                'driver_id'=>$faker->numberBetween(1,7)
+            ]);
+        }
     }
 }

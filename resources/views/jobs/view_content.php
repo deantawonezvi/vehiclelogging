@@ -56,11 +56,11 @@
                             {{job.end_date |stringToDate:"longDate"}}
                         </td>
                         <td>
-                            {{job.status  | uppercase}}
+                            {{job.status | uppercase}}
                         </td>
 
                         <td class="right">
-                            <button ng-hide="job.status == 'pending'" class="btn blue darken-2 white-text" ng-click="info(job)"><i
+                            <button class="btn blue darken-2 white-text" ng-click="open(job)"><i
                                         class="fa fa-info-circle"></i></button>
                             <button ng-hide="job.status == 'DONE'" class="btn green white-text" ng-click="edit(job)"><i
                                         class="fa fa-pencil"></i>
@@ -107,13 +107,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" name="description" id="description" ng-model="description"
+                                <textarea class="form-control" name="description" id="description"
+                                          ng-model="description"
                                           required></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="location">Location: </label>
-                                <input type="text" class="form-control" name="location" id="location" ng-model="location" required>
+                                <input type="text" class="form-control" name="location" id="location"
+                                       ng-model="location" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fuel">Fuel Added(L): </label>
+                                <input type="number" class="form-control" name="fuel" id="fuel" ng-model="fuel"
+                                       required>
                             </div>
                             <div class="form-group">
                                 <label for="start_date">Start Date</label>
@@ -156,7 +163,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="crane">Crane:</label>
-                                <select name="crane" id="crane" class="form-control" ng-model="jobE.crane_id">
+                                <select name="crane" id="crane" class="form-control" ng-model="jobE.crane.id">
                                     <option ng-repeat="crane in cranes" value="{{crane.id}}">{{crane.name}} -
                                         {{crane.driver.name}}
                                     </option>
@@ -190,6 +197,12 @@
                                 </select>
                             </div>
 
+                            <div class="form-group" ng-if="jobE.status == 'DONE'">
+                                <label for="closing_mileage">Closing Mileage</label>
+                                <input type="number" name="closing_mileage" id="closing_mileage" class="form-control"
+                                       ng-model="closing_mileage">
+                            </div>
+
 
                     </div>
                     <div class="modal-footer">
@@ -217,20 +230,20 @@
                     </div>
                     <div class="modal-body">
                         <h4>
-                            <span class="blue-text">JOB</span> - {{jobE.job.name}}<br>
-                            <span class="blue-text">DEFECT</span> - {{jobE.job.defect}}<br>
-                            <span class="blue-text">JOB DRIVER</span> - {{jobE.job.driver.name}}
+                            <span class="blue-text">Client</span> - {{jobE.client.name}}<br>
+                            <span class="blue-text">Crane</span> - {{jobE.crane.name}}<br>
+                            <span class="blue-text">JOB Driver</span> - {{jobE.crane.driver.name}}<br>
+                            <span class="blue-text">JOB Description</span> - {{jobE.description}}
                             <hr>
                             <span class="blue-text">JOB START DATE</span> - {{jobE.start_date
                             |stringToDate:"longDate" }}<br>
                             <span class="blue-text">JOB END DATE</span> - {{jobE.end_date |stringToDate:"longDate"
                             }}<br>
-                            <span class="blue-text">JOB STATUS</span> - {{jobE.state}}
+                            <span class="blue-text">JOB STATUS</span> - {{jobE.status}}
 
                             <hr>
-                            <span class="blue-text">GARAGE NAME</span> - {{jobE.garage.name}}<br>
-                            <span class="blue-text">GARAGE CONTACT</span> - {{jobE.garage.contact_person}} |
-                            {{jobE.garage.contact_number}}<br>
+                            <span class="blue-text">Starting Crane Mileage</span> - {{jobE.opening_mileage}} km<br>
+                            <span class="blue-text">Closing Crane Mileage</span> - {{jobE.closing_mileage}} km<br>
 
                         </h4>
                         <div class="modal-footer">

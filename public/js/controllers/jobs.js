@@ -27,6 +27,7 @@ angular.module('jobsApp', [])
                 client_id:$scope.client,
                 crane_id:$scope.crane,
                 location:$scope.location,
+                fuel:$scope.fuel,
                 description:$scope.description,
                 start_date:$scope.start_date,
                 end_date:$scope.end_date
@@ -51,7 +52,9 @@ angular.module('jobsApp', [])
 
         };
         $scope.open = function (job) {
-            console.log(job)
+            $scope.jobE = job;
+            $('#viewModal').modal('toggle');
+            console.log($scope.jobE)
         };
         $scope.edit = function (job) {
             $('#editModal').modal('show');
@@ -66,6 +69,7 @@ angular.module('jobsApp', [])
                     crane_id:$scope.jobE.crane_id,
                     location:$scope.jobE.location,
                     status:$scope.jobE.status,
+                    closing_mileage:$('#closing_mileage').val(),
                     description:$scope.jobE.description,
                     start_date:$scope.jobE.start_date,
                     end_date:$scope.jobE.end_date
@@ -73,6 +77,7 @@ angular.module('jobsApp', [])
                 };
                 $http.post('/api/job/update',post)
                     .then(function (data) {
+                        console.log(data)
                         swal(data.data);
                         $scope.loader = false;
 
@@ -86,13 +91,17 @@ angular.module('jobsApp', [])
         $scope.delete = function (job) {
             swal({
                     title: "DELETE JOB",
-                    text: "Name - " + job.name,
+                    //language=HTML
+                    text: "Client - " + job.client.name +
+                    "<br>Crane - " + job.crane.name,
                     type: "warning",
                     showCancelButton: true,
                     closeOnConfirm: false,
                     confirmButtonColor: "#dd140f",
                     confirmButtonText: "Yes, delete!",
                     showLoaderOnConfirm: true,
+                    html:true
+
                 },
                 function () {
                     var post = {
